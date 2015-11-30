@@ -1,0 +1,174 @@
+object MeaRuler_Form1: TMeaRuler_Form1
+  Left = 613
+  Height = 422
+  Top = 322
+  Width = 153
+  Caption = 'MeaRuler 0.4.1'
+  ClientHeight = 422
+  ClientWidth = 153
+  FormStyle = fsSystemStayOnTop
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.4.4.0'
+  object Memo1: TMemo
+    Left = 93
+    Height = 346
+    Top = 40
+    Width = 54
+    Anchors = [akTop, akRight, akBottom]
+    Font.Height = 11
+    OnChange = Memo1Change
+    ParentFont = False
+    ScrollBars = ssAutoVertical
+    TabOrder = 9
+  end
+  object Button1: TButton
+    Left = 8
+    Height = 25
+    Top = 8
+    Width = 75
+    Caption = 'Start'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 1
+    Top = 415
+    Width = 1
+    Anchors = [akLeft, akBottom]
+    ParentColor = False
+  end
+  object Button2: TButton
+    Left = 8
+    Height = 25
+    Top = 36
+    Width = 75
+    Caption = 'Stop'
+    Enabled = False
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object DefaultMemoButton: TButton
+    Left = 93
+    Height = 25
+    Top = 387
+    Width = 43
+    Anchors = [akRight, akBottom]
+    Caption = '+'
+    Enabled = False
+    OnClick = DefaultMemoButtonClick
+    TabOrder = 10
+  end
+  object Label2: TLabel
+    Left = 16
+    Height = 1
+    Top = 72
+    Width = 1
+    Font.Color = clRed
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Button10: TButton
+    Left = 8
+    Height = 25
+    Top = 374
+    Width = 75
+    Anchors = [akLeft, akBottom]
+    Caption = '&Copy'
+    Default = True
+    OnClick = Button10Click
+    TabOrder = 6
+  end
+  object Button11: TButton
+    Left = 8
+    Height = 25
+    Top = 248
+    Width = 75
+    Caption = 'C&lear'
+    OnClick = Button11Click
+    TabOrder = 5
+  end
+  object StaticText1: TStaticText
+    Left = 93
+    Height = 17
+    Top = 16
+    Width = 43
+    Anchors = [akTop, akRight]
+    Caption = '0'
+    TabOrder = 11
+  end
+  object AngleModeCheckBox: TCheckBox
+    Left = 8
+    Height = 26
+    Top = 88
+    Width = 64
+    Caption = 'A&ngle'
+    OnChange = AngleModeCheckBoxChange
+    TabOrder = 2
+  end
+  object CancelLineButton: TButton
+    Left = 8
+    Height = 25
+    Top = 216
+    Width = 75
+    Cancel = True
+    Caption = '&Undo'
+    Enabled = False
+    OnClick = CancelLineButtonClick
+    TabOrder = 4
+  end
+  object AngleRGroup: TRadioGroup
+    Left = 0
+    Height = 65
+    Top = 112
+    Width = 88
+    AutoFill = True
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 61
+    ClientWidth = 84
+    Enabled = False
+    Items.Strings = (
+      '<180⁰'
+      '>180⁰'
+    )
+    OnClick = AngleRGroupClick
+    TabOrder = 3
+  end
+  object MemoPlusBtn: TButton
+    Left = 85
+    Height = 16
+    Top = 0
+    Width = 36
+    Anchors = [akTop, akRight]
+    Caption = '+'
+    OnClick = MemoPlusBtnClick
+    TabOrder = 7
+  end
+  object MemoMinusBtn: TButton
+    Left = 117
+    Height = 16
+    Top = 0
+    Width = 36
+    Anchors = [akTop, akRight]
+    Caption = '-'
+    Enabled = False
+    OnClick = MemoMinusBtnClick
+    TabOrder = 8
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 1
+    OnTimer = Timer1Timer
+    left = 96
+    top = 48
+  end
+end

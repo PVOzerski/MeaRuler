@@ -1,0 +1,27 @@
+object MeaRuler_Form2: TMeaRuler_Form2
+  Left = 577
+  Height = 558
+  Top = 281
+  Width = 629
+  BorderStyle = bsNone
+  Caption = 'MeaRuler_Form2'
+  ClientHeight = 558
+  ClientWidth = 629
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnHide = FormHide
+  OnShow = FormShow
+  Position = poDesktopCenter
+  LCLVersion = '1.4.4.0'
+  WindowState = wsMaximized
+  object Image1: TImage
+    Left = 16
+    Height = 90
+    Top = 8
+    Width = 90
+    OnMouseDown = FormMouseDown
+    OnMouseMove = FormMouseMove
+    OnMouseUp = FormMouseUp
+  end
+end

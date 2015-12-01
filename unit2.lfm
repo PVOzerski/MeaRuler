@@ -1,8 +1,8 @@
 object MeaRuler_Form2: TMeaRuler_Form2
   Cursor = crHandPoint
-  Left = 577
+  Left = 807
   Height = 558
-  Top = 281
+  Top = 108
   Width = 629
   BorderStyle = bsNone
   Caption = 'MeaRuler_Form2'

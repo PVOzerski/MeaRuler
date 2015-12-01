@@ -63,10 +63,10 @@ procedure TMyLine.Draw;
 var
   OldCursor: TCursor;
 begin
-  MeaRuler_Form2.Image1.Picture.Bitmap.Canvas.Moveto(first.X, first.Y);
+  MeaRuler_Form2.{$IFNDEF Windows}Image1.Picture.Bitmap.{$ENDIF}Canvas.Moveto(first.X{$IFDEF Windows}+MeaRuler_Form2.Image1.Left{$ENDIF}, first.Y{$IFDEF Windows}+MeaRuler_Form2.Image1.Top{$ENDIF});
   OldCursor := MeaRuler_Form2.Cursor;
   MeaRuler_Form2.Cursor := crNone;
-  MeaRuler_Form2.Image1.Picture.Bitmap.Canvas.LineTo(second.X, second.Y);
+  MeaRuler_Form2.{$IFNDEF Windows}Image1.Picture.Bitmap.{$ENDIF}Canvas.LineTo(second.X{$IFDEF Windows}+MeaRuler_Form2.Image1.Left{$ENDIF}, second.Y{$IFDEF Windows}+MeaRuler_Form2.Image1.Top{$ENDIF});
   MeaRuler_Form2.Cursor := OldCursor;
 end;
 
@@ -111,7 +111,7 @@ begin
   MouseWatch := false;
   BreakLine := false;
   Image1.Cursor := Cursor;
-  Image1.Picture.Bitmap.Canvas.Pen.Mode := pmNot;
+  {$IFNDEF Windows}Image1.Picture.Bitmap.{$ENDIF}Canvas.Pen.Mode := pmNot;
 end;
 
 procedure TMeaRuler_Form2.FormHide(Sender: TObject);

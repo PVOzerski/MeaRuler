@@ -9,6 +9,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Buttons;
+const
+  AppVersion = '0.4.2';
 type
   TMemoStruct = class
     Memo: TMemo;
@@ -83,6 +85,7 @@ procedure TMeaRuler_Form1.Button1Click(Sender: TObject);
 begin
   MeaRuler_Form2.AngleCounter := 0;
   Label2.Caption:='';
+  Label2.ShowHint := false;
   Hide;
   Button1.Enabled := false;
   Button2.Enabled := true;
@@ -181,6 +184,7 @@ begin
                         break;
                       end;
                     Label2.Caption := s;
+                    Label2.ShowHint := s <> '';
                 end;
             end;
         end;
@@ -208,6 +212,7 @@ begin
     else if Controls[i] is TStaticText then
       TStaticText(Controls[i]).Caption := '0';
   Label2.Caption := '';
+  Label2.ShowHint := false;
   ButtonsOff;
 end;
 
@@ -229,6 +234,7 @@ begin
           TMemo(controls[i]).Append(Label2.Caption);
           Memo1Change(controls[i]);
           Label2.Caption:='';
+          Label2.ShowHint := false;
           ButtonsOff;
           break;
         end;
@@ -251,6 +257,8 @@ end;
 
 procedure TMeaRuler_Form1.FormCreate(Sender: TObject);
 begin
+  Caption := Caption + AppVersion;
+  AngleRGroup.ItemIndex := 0;
   AngleRGroupPrevIndex := 0;
   DataIsDegrees := false;
   Memos := nil;
@@ -329,8 +337,6 @@ begin
            (TButton(MeaRuler_Form1.Controls[i]).Tag > 0) then
           TButton(MeaRuler_Form1.Controls[i]).Anchors := [akLeft,akBottom];
       end;
-
-
   Memo := TMemo.Create(Mearuler_Form1);
   Memo.Left := PrevMemo.Left + PrevMemo.Width - 1;
   Memo.Width := PrevMemo.Width;
@@ -359,9 +365,12 @@ begin
   Text.Left := PrevText.Left + (Memo.Left - PrevMemo.Left);
   Text.TabOrder := PrevText.TabOrder + 1;
   Text.Caption := PrevText.Caption;
-
+  Text.Hint := Mearuler_Form1.StaticText1.Hint;
+  Text.ShowHint := Mearuler_Form1.StaticText1.ShowHint;
   PlusBtn := TButton.Create(MeaRuler_Form1);
   PlusBtn.Tag := Memo.Tag;
+  PlusBtn.Hint := Mearuler_Form1.DefaultMemoButton.Hint;
+  PlusBtn.ShowHint := Mearuler_Form1.DefaultMemoButton.ShowHint;
   if PlusBtn.Tag = 1 then
     PrevPlusBtn := Mearuler_Form1.DefaultMemoButton
   else
@@ -419,17 +428,7 @@ begin
            (TButton(MeaRuler_Form1.Controls[i]).Tag > 0) then
           TButton(MeaRuler_Form1.Controls[i]).Anchors := [akLeft,akBottom];
       end;
-
-  MeaRuler_Form1.MemoPlusBtn.Anchors := [akTop,akLeft];
-  MeaRuler_Form1.MemoMinusBtn.Anchors := [akTop,akLeft];
-
   MeaRuler_Form1.Width := MeaRuler_Form1.Width - w + 1;
-  MeaRuler_Form1.MemoPlusBtn.Left := MeaRuler_Form1.MemoPlusBtn.Left - w;
-  MeaRuler_Form1.MemoMinusBtn.Left := MeaRuler_Form1.MemoMinusBtn.Left - w;
-
-  MeaRuler_Form1.MemoPlusBtn.Anchors := [akTop,akRight];
-  MeaRuler_Form1.MemoMinusBtn.Anchors := [akTop,akRight];
-
   for i := 0 to MeaRuler_Form1.ControlCount - 1 do
     if MeaRuler_Form1.Controls[i] is TMemo then
       TMemo(MeaRuler_Form1.Controls[i]).Anchors := [akTop, akRight, akBottom]

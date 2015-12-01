@@ -58,16 +58,15 @@ implementation
 uses
   LCLIntf, LCLType, unit1;
 {$R *.lfm}
-var
-  XDElta, YDelta: integer;
+
 procedure TMyLine.Draw;
 var
   OldCursor: TCursor;
 begin
-  MeaRuler_Form2.Canvas.Moveto(first.X-XDelta, first.Y-YDelta);
+  MeaRuler_Form2.Image1.Picture.Bitmap.Canvas.Moveto(first.X, first.Y);
   OldCursor := MeaRuler_Form2.Cursor;
   MeaRuler_Form2.Cursor := crNone;
-  MeaRuler_Form2.Canvas.LineTo(second.X-XDelta, second.Y-YDelta);
+  MeaRuler_Form2.Image1.Picture.Bitmap.Canvas.LineTo(second.X, second.Y);
   MeaRuler_Form2.Cursor := OldCursor;
 end;
 
@@ -95,27 +94,24 @@ end;
 
 { TMeaRuler_Form2 }
 
-
-
 procedure TMeaRuler_Form2.FormCreate(Sender: TObject);
 begin
   OldLine[0] := TMyLine.Create;
   NewLine[0] := TMyLine.Create;
   OldLine[1] := TMyLine.Create;
   NewLine[1] := TMyLine.Create;
-  XDelta := 0;
-  YDelta := 0;
   left := 0;
   top := 0;
   width := Screen.Width;
   height := Screen.Height;
   Image1.Width := Width;
   Image1.Height := Height;
-  Image1.Left := -XDelta;
-  Image1.Top := -YDelta;
+  Image1.Left := 0;
+  Image1.Top := 0;
   MouseWatch := false;
   BreakLine := false;
-  Canvas.Pen.Mode := pmNot;
+  Image1.Cursor := Cursor;
+  Image1.Picture.Bitmap.Canvas.Pen.Mode := pmNot;
 end;
 
 procedure TMeaRuler_Form2.FormHide(Sender: TObject);
@@ -270,8 +266,8 @@ begin
                 begin
                   CrossingPoint.X := (bp - b) / (k - kp);
                   CrossingPoint.Y := k * CrossingPoint.X + b;
-                  sx := width + xdelta;
-                  sy := height + ydelta;
+                  sx := width;
+                  sy := height;
                   PA := FloatPoint(0, bp);
                   PB := FloatPoint(sx, k * sx + b);
                   PC := FloatPoint(sx, kp * sx + bp);
@@ -363,6 +359,7 @@ var
           break;
         end;
     MeaRuler_Form1.Label2.Caption := s;
+    MeaRuler_Form1.Label2.ShowHint := s <> '';
     MeaRuler_form1.DefaultMemoButton.Enabled := true;
     for i := 0 to MeaRuler_form1.ControlCount - 1 do
       if MeaRuler_form1.Controls[i] is TButton then
@@ -421,10 +418,8 @@ var
   MP: TPoint;
 begin
   Mp := Mouse.CursorPos;
-  XDelta := Mp.X - ScreenToClient(Mouse.CursorPos).X;
-  YDelta := Mp.Y - ScreenToClient(Mouse.CursorPos).Y;
-  Image1.Left := -XDelta;
-  Image1.Top := -YDelta;
+  Image1.Left := ScreenToClient(Mouse.CursorPos).X - Mp.X;
+  Image1.Top := ScreenToClient(Mouse.CursorPos).Y - Mp.Y;
 end;
 
 end.

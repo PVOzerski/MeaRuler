@@ -1,4 +1,5 @@
 object MeaRuler_Form2: TMeaRuler_Form2
+  Cursor = crHandPoint
   Left = 577
   Height = 558
   Top = 281

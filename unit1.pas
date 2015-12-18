@@ -10,7 +10,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Buttons;
 const
-  AppVersion = '0.4.2';
+  AppVersion = '0.4.3';
 type
   TMemoStruct = class
     Memo: TMemo;

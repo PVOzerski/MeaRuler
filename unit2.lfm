@@ -1,6 +1,5 @@
 object MeaRuler_Form2: TMeaRuler_Form2
-  Cursor = crHandPoint
-  Left = 807
+  Left = 799
   Height = 558
   Top = 108
   Width = 629
@@ -11,6 +10,7 @@ object MeaRuler_Form2: TMeaRuler_Form2
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnHide = FormHide
   OnShow = FormShow
   Position = poDesktopCenter
